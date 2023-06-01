@@ -48,7 +48,7 @@ exports.updateRoom = async (req, res) => {
     try {
         const room = await Room.findOneAndUpdate(
             { writeKey: roomId },
-            { language, value }
+            { language: language, value: value }
         );
 
         if (!room) {
