@@ -3,9 +3,12 @@ const uniqid = require("uniqid");
 
 exports.getRoom = async (req, res) => {
     const roomId = req.params.id; // room ID is passed as a parameter
-
+    const isRead = roomId[roomId.length - 1] == "r";
+    console.log(isRead);
     try {
-        const room = await Room.findOne({ readKey: roomId });
+        const room = isRead
+            ? await Room.findOne({ readKey: roomId }, { writeKey: 0 })
+            : await Room.findOne({ writeKey: roomId });
 
         if (!room) {
             return res.status(404).json({ message: "Key Is Invalid" });

@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const app = express();
+app.use(cors());
+
 const router = require("./routes/roomRoutes");
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
