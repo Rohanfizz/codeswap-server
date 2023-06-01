@@ -5,7 +5,7 @@ exports.getRoom = async (req, res) => {
     const roomId = req.params.id; // room ID is passed as a parameter
 
     try {
-        const room = await Room.find({ readKey: roomId });
+        const room = await Room.findOne({ readKey: roomId });
 
         if (!room) {
             return res.status(404).json({ message: "Key Is Invalid" });
